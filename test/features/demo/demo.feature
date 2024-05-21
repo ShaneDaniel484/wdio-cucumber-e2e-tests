@@ -1,8 +1,7 @@
-Feature: Demo feature
+Feature: Web Interactions
 
     
-    @demo
-    Scenario Outline: Run first demo feature
+    Scenario Outline: Demo Web Interactions
         Given Google page is opened
         When Search with <SearchItem>
         Then Click on first search result
