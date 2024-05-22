@@ -26,7 +26,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("/windows");
+  await browser.url("/basic_auth");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -66,7 +66,7 @@ When(/^perform web interactions$/, async function () {
   // expect(val).to.equal("Please select an option")
 
   //2.
-  let ddele = await $(`#dropdown`);
+  //  let ddele = await $(`#dropdown`);
   //  await ddele.selectByVisibleText("Option 2")
   //  await ddele.selectByAttribute("value", "2")
   //  await ddele.selectByIndex(2)
@@ -132,32 +132,60 @@ When(/^perform web interactions$/, async function () {
    * 4.switchToWindow()
    */
 
-  await $(`=Click Here`).click();
-  await $(`=Elemental Selenium`).click();
-  let currentWindowTitle = await browser.getTitle();
-  let parentWindowHandle = await browser.getWindowHandle();
-  console.log(`>>current window title: ${currentWindowTitle}`);
+  // await $(`=Click Here`).click();
+  // await $(`=Elemental Selenium`).click();
+  // let currentWindowTitle = await browser.getTitle();
+  // let parentWindowHandle = await browser.getWindowHandle();
+  // console.log(`>>current window title: ${currentWindowTitle}`);
 
-  //swich to specific window
-  let windowHandles = await browser.getWindowHandles();
-  for (let i = 0; i < windowHandles.length; i++) {
-    console.log(`>>window handle: ${windowHandles[i]}`);
-    await browser.switchToWindow(windowHandles[i]);
-    currentWindowTitle = await browser.getTitle();
-    if (currentWindowTitle === "Home | Elemental Selenium") {
-      await browser.switchToWindow(windowHandles[i]);
-      let headerTxtElementalSel = await $(`<h1>`).getText();
-      console.log(`>>header text: ${headerTxtElementalSel}`);
-      //rest of the action goes here
-      break;
-    }
-    //console.log(`>> current window title: ${currentWindowTitle}`);
-  }
+  // //swich to specific window
+  // let windowHandles = await browser.getWindowHandles();
+  // for (let i = 0; i < windowHandles.length; i++) {
+  //   console.log(`>>window handle: ${windowHandles[i]}`);
+  //   await browser.switchToWindow(windowHandles[i]);
+  //   currentWindowTitle = await browser.getTitle();
+  //   if (currentWindowTitle === "Home | Elemental Selenium") {
+  //     await browser.switchToWindow(windowHandles[i]);
+  //     let headerTxtElementalSel = await $(`<h1>`).getText();
+  //     console.log(`>>header text: ${headerTxtElementalSel}`);
+  //     //rest of the action goes here
+  //     break;
+  //   }
+  //   //console.log(`>> current window title: ${currentWindowTitle}`);
+  // }
 
-  //swich back to parent window
+  // //swich back to parent window
 
-  await browser.switchToWindow(parentWindowHandle);
-  let parentHeader = await (await $(`<h3>`)).getText()
-  console.log(`>>parent header text: ${parentHeader}`);
+  // await browser.switchToWindow(parentWindowHandle);
+  // let parentHeader = await (await $(`<h3>`)).getText()
+  // console.log(`>>parent header text: ${parentHeader}`);
+
+  /**
+   * 4. HANDING ALERTS
+   * 1. is AlertOpen()
+   * 2. acceptAlert()
+   * 3. dismissAlert()
+   * 4. getAlertText()
+   * 5. sendAlertText()
+   */
+
+  // await $(`button=Click for JS Prompt`).click();
+  // if (await browser.isAlertOpen()) {
+  //   //await browser.acceptAlert();
+  //   await browser.pause(2000);
+  //   //await browser.dismissAlert();
+  //   let alertText = await browser.getAlertText();
+  //   console.log(`>>alert text: ${alertText}`);
+  //   await browser.sendAlertText("sending alert text");
+  //   await browser.pause(2000);
+  //   await browser.acceptAlert();
+  // };
+
+  //basic auth
+     // change baseUrl: 'https://admin:admin@the-internet.herokuapp.com',
+     
+
+
+
   await browser.debug();
 });
