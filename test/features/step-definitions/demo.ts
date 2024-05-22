@@ -26,7 +26,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("/inputs");
+  await browser.url("/checkboxes");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -39,17 +39,102 @@ When(/^perform web interactions$/, async function () {
     3.click and type
     4.slow typing
    */
-  let num = 12345;
-  let strNum = num.toString();
-  let ele = await $(`[type="number"]`);
-  await ele.click();
-  // await ele.scrollIntoView();
-  // await ele.moveTo();
-  //await ele.setValue("WDIO");
-  for (let i = 0; i < strNum.length; i++) {
-    let charStr = strNum.charAt(i);
-   // await browser.pause(1000);
-    await browser.keys(charStr);
+
+  //   let num = 12345;
+  //   let strNum = num.toString();
+  //   let ele = await $(`[type="number"]`);
+  //   await ele.click();
+  //   // await ele.scrollIntoView();
+  //   // await ele.moveTo();
+  //   //await ele.setValue("WDIO");
+  //   for (let i = 0; i < strNum.length; i++) {
+  //     let charStr = strNum.charAt(i);
+  //    // await browser.pause(1000);
+  //     await browser.keys(charStr);
+  //   }
+
+  /**
+   * 2.DROPDOWN
+   * Actions:
+   * 1.Assert default opions is selected
+   * 2.Select by sttributr,text,index
+   * 3.get a list of options
+   */
+  //1.
+  // let ele = await $(`//select/option[@selected="selected"]`)
+  // let val = await ele.getText()
+  // expect(val).to.equal("Please select an option")
+
+  //2.
+  let ddele = await $(`#dropdown`);
+  //  await ddele.selectByVisibleText("Option 2")
+  //  await ddele.selectByAttribute("value", "2")
+  //  await ddele.selectByIndex(2)
+
+  //3.
+  // let eleArr = await $$(`select > option`);
+  // let arr = [];
+  // for (let i = 0; i < eleArr.length; i++) {
+  //   let ele = eleArr[i];
+  //   let val = await ele.getText();
+  //   arr.push(val);
+  //   console.log(val);
+  // }
+  // console.log(`Options list >> ${arr}`);
+
+  /**
+   * 3.CHECKBOX
+   * Actions:
+   * 1.select an option
+   * 2.unselecct an option (is felected)
+   * 3.Assert if optiion is selected
+   * 4.select all options
+   */
+
+  //1.
+  // let ele = await $(`//form/input[@type="checkbox"][1]`)
+  //2.
+  // let ele = await $(`//form/input[@type="checkbox"][1]`)
+  // if (! await ele.isSelected()) {
+  //   await ele.click()
+  // }
+
+  //3
+  // let ele = await $(`//form/input[@type="checkbox"][2]`)
+  // let isChecked = await ele.isSelected()
+  // expect(isChecked).to.be.true
+  // expect(isChecked).to.be.false
+
+  //4
+  // let eleArr = await $$(`//form[@id="checkboxes"]/input`)
+  // for (let i = 0; i < eleArr.length; i++) {
+  //   let ele = eleArr[i]
+  //   if (!await ele.isSelected()) {
+  //     await ele.click()
+  //   }
+  //   else{
+  //     await ele.click()
+  //   }
+
+  /**
+   * 4.WINDOW HANDLING
+   * steps:
+   * 1.launch the browser
+   * 2.open another window
+   * 3.switch to the window based on title
+   * 4.switch back to the main window
+   * 
+   * 
+   * METHODS USED
+   * 1.getTitle()
+   * 2.getWindowHandle()
+   * 3.getWindowHandles()
+   * 4.switchToWindow()
+   */
+    
   }
+
+
+
   await browser.debug();
 });
