@@ -26,7 +26,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("/upload");
+  await browser.url("/frames");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -182,13 +182,39 @@ When(/^perform web interactions$/, async function () {
   // };
 
   //basic auth
-     // change baseUrl: 'https://admin:admin@the-internet.herokuapp.com',
-     
+  // change baseUrl: 'https://admin:admin@the-internet.herokuapp.com',
+
   /**
    * 5.FILE UPLOAD
    */
-    await $(`#file-upload`).addValue(`${process.cwd()}/data/fileUpload/dummy.txt`)
-    await $(`#file-submit`).click()
+  // await $(`#file-upload`).addValue(`${process.cwd()}/data/fileUpload/dummy.txt`)
+  // await $(`#file-submit`).click()
+
+  /**
+   * 6.FRAMES
+   * methods:
+   * 1.switchToFframe()
+   * 2.switchToParentFrame()
+   */
+
+  // await $(`=iFrame`).click();
+  // let ele = await $(`#mce_0_ifr`);
+  // await browser.switchToFrame(ele);
+  // await $(`#tinymce`).setValue(`Typing in iframe`);
+  // await browser.switchToParentFrame();
+
+  /**
+   * 7.KEY PRESS
+   */
+
+  // await $(`=iFrame`).click();
+  // let ele = await $(`#mce_0_ifr`);
+  // await browser.switchToFrame(ele);
+  // await $(`#tinymce`).click();
+  // await browser.keys(["meta", "A"]);
+  // await browser.keys("Delete");
+  // await $(`#tinymce`).addValue(`Typing in iframe`);
+  // await browser.switchToParentFrame();
 
   await browser.debug();
 });
