@@ -26,7 +26,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("/frames");
+  await browser.url("/");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -215,6 +215,18 @@ When(/^perform web interactions$/, async function () {
   // await browser.keys("Delete");
   // await $(`#tinymce`).addValue(`Typing in iframe`);
   // await browser.switchToParentFrame();
+
+
+  /**
+   * 8.BASIC SCROLLING
+   * methods:
+   * 1.scrollIntoView()
+   */
+
+  //await $(`span=Bestsellers in Women's Indian Clothing`).scrollIntoView();
+  //give false to scroll upto above the element
+  await $(`span=Bestsellers in Women's Indian Clothing`).scrollIntoView(false);
+
 
   await browser.debug();
 });
