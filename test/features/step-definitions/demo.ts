@@ -132,7 +132,7 @@ When(/^perform web interactions$/, async function () {
    * 4.switchToWindow()
    */
     
-  }
+  
 
 
 
