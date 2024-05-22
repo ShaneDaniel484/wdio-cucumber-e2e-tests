@@ -26,7 +26,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("/basic_auth");
+  await browser.url("/upload");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -184,8 +184,11 @@ When(/^perform web interactions$/, async function () {
   //basic auth
      // change baseUrl: 'https://admin:admin@the-internet.herokuapp.com',
      
-
-
+  /**
+   * 5.FILE UPLOAD
+   */
+    await $(`#file-upload`).addValue(`${process.cwd()}/data/fileUpload/dummy.txt`)
+    await $(`#file-submit`).click()
 
   await browser.debug();
 });
