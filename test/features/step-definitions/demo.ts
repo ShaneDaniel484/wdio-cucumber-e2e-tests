@@ -26,7 +26,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("/checkboxes");
+  await browser.url("/windows");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -123,18 +123,41 @@ When(/^perform web interactions$/, async function () {
    * 2.open another window
    * 3.switch to the window based on title
    * 4.switch back to the main window
-   * 
-   * 
+   *
+   *
    * METHODS USED
    * 1.getTitle()
    * 2.getWindowHandle()
    * 3.getWindowHandles()
    * 4.switchToWindow()
    */
-    
-  
 
+  await $(`=Click Here`).click();
+  await $(`=Elemental Selenium`).click();
+  let currentWindowTitle = await browser.getTitle();
+  let parentWindowHandle = await browser.getWindowHandle();
+  console.log(`>>current window title: ${currentWindowTitle}`);
 
+  //swich to specific window
+  let windowHandles = await browser.getWindowHandles();
+  for (let i = 0; i < windowHandles.length; i++) {
+    console.log(`>>window handle: ${windowHandles[i]}`);
+    await browser.switchToWindow(windowHandles[i]);
+    currentWindowTitle = await browser.getTitle();
+    if (currentWindowTitle === "Home | Elemental Selenium") {
+      await browser.switchToWindow(windowHandles[i]);
+      let headerTxtElementalSel = await $(`<h1>`).getText();
+      console.log(`>>header text: ${headerTxtElementalSel}`);
+      //rest of the action goes here
+      break;
+    }
+    //console.log(`>> current window title: ${currentWindowTitle}`);
+  }
 
+  //swich back to parent window
+
+  await browser.switchToWindow(parentWindowHandle);
+  let parentHeader = await (await $(`<h3>`)).getText()
+  console.log(`>>parent header text: ${parentHeader}`);
   await browser.debug();
 });
