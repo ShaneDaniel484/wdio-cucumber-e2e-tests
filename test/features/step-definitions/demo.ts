@@ -269,37 +269,55 @@ When(/^perform web interactions$/, async function () {
   // 3.get single row (based on a condition)
   //condition : display jason's details
 
-  let tableArr = [];
-  for (let i = 0; i < tableRowCount; i++) {
-    let personObj = {
-      lastname: "",
-      firstname: "",
-      email: "",
-      due: "",
-      webSite: "",
-    };
-    for (let j = 0; j < tableColCount; j++) {
-      let cellVal = await $(
-        `//table[@id="table1"]/tbody/tr[${i + 1}]/td[${j + 1}]`
-      ).getText();
-      let firstname = await (
-        await $(`//table[@id="table1"]/tbody/tr[${i + 1}]/td[2]`)
-      ).getText();
-      if (firstname === "Jason") {
-        if (j === 0) personObj.lastname = cellVal;
-        if (j === 1) personObj.firstname = cellVal;
-        if (j === 2) personObj.email = cellVal;
-        if (j === 3) personObj.due = cellVal;
-        if (j === 4) personObj.webSite = cellVal;
-      }
-    }
-    if (personObj.firstname) {
-      tableArr.push(personObj);
-    }
-  }
-  console.log(`>> jason's data: ${JSON.stringify(tableArr)}`);
+  // let tableArr = [];
+  // for (let i = 0; i < tableRowCount; i++) {
+  //   let personObj = {
+  //     lastname: "",
+  //     firstname: "",
+  //     email: "",
+  //     due: "",
+  //     webSite: "",
+  //   };
+  //   for (let j = 0; j < tableColCount; j++) {
+  //     let cellVal = await $(
+  //       `//table[@id="table1"]/tbody/tr[${i + 1}]/td[${j + 1}]`
+  //     ).getText();
+  //     let firstname = await (
+  //       await $(`//table[@id="table1"]/tbody/tr[${i + 1}]/td[2]`)
+  //     ).getText();
+  //     if (firstname === "Jason") {
+  //       if (j === 0) personObj.lastname = cellVal;
+  //       if (j === 1) personObj.firstname = cellVal;
+  //       if (j === 2) personObj.email = cellVal;
+  //       if (j === 3) personObj.due = cellVal;
+  //       if (j === 4) personObj.webSite = cellVal;
+  //     }
+  //   }
+  //   if (personObj.firstname) {
+  //     tableArr.push(personObj);
+  //   }
+  // }
+  // console.log(`>> jason's data: ${JSON.stringify(tableArr)}`);
 
   // 4.get single column
+  // let singleArr = [];
+  // for (let i = 0; i < tableRowCount; i++) {
+  //   let cellVal =await $(`//table[@id="table1"]/tbody/tr[${i+1}]/td[4]`).getText();
+  //   singleArr.push(cellVal);
+  // }
+  //   console.log(`>>Single column: ${singleArr}`);
+
   // 5.get single cell value (based on another cell)
-  //await browser.debug();
+  // let singleCol = [];
+  // for (let i = 0; i < tableRowCount; i++) {
+  //     let due = await $(`//table[@id="table1"]/tbody/tr[${i + 1}]/td[4]`).getText();
+  //     let firstname = await $(`//table[@id="table1"]/tbody/tr[${i + 1}]/td[2]`).getText();
+  //     if (+(due.replace("$","")) > 50) {
+  //       singleCol.push(firstname);
+  //     }
+    
+  // }
+  // console.log(`>>Single column : ${singleCol}`);
+
+  await browser.debug();
 });
