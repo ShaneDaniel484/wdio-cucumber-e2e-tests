@@ -1,0 +1,9 @@
+[
+    {
+        "lastname": "Doe",
+        "firstname": "Jason",
+        "email": "jdoe@hotmail.com",
+        "due": "$100.00",
+        "webSite": "http://www.jdoe.com"
+    }
+]

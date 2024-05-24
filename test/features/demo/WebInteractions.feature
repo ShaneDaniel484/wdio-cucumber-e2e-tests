@@ -1,8 +1,8 @@
-Feature: Demo feature
+Feature: Web Interactions
 
 
-    
-    Scenario Outline: Run first demo feature
+    @demo
+    Scenario Outline: Web Interactions
         Given a web page is opened
          When perform web interactions
         Examples:

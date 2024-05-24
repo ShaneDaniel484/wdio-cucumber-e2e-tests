@@ -26,7 +26,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("/");
+  await browser.url("https://the-internet.herokuapp.com/tables");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -216,7 +216,6 @@ When(/^perform web interactions$/, async function () {
   // await $(`#tinymce`).addValue(`Typing in iframe`);
   // await browser.switchToParentFrame();
 
-
   /**
    * 8.BASIC SCROLLING
    * methods:
@@ -225,8 +224,82 @@ When(/^perform web interactions$/, async function () {
 
   //await $(`span=Bestsellers in Women's Indian Clothing`).scrollIntoView();
   //give false to scroll upto above the element
-  await $(`span=Bestsellers in Women's Indian Clothing`).scrollIntoView(false);
+  //await $(`span=Bestsellers in Women's Indian Clothing`).scrollIntoView(false);
 
+  /**
+   * WEB TABLES
+   * 1.Check number of rows and columns
+   * 2.get whole table data
+   * 3.get single row (based on a condition)
+   * 4.get single column
+   * 5.get single cell value (based on another cell)
+   */
 
-  await browser.debug();
+  //  1.Check number of rows and columns
+  let tableRowCount = await $$(`//table[@id="table1"]/tbody/tr`).length;
+  expect(tableRowCount).to.equal(4);
+  console.log(`>>No of Rows: ${tableRowCount}`);
+  let tableColCount = await $$(`//table[@id="table1"]/thead/tr/th`).length;
+  expect(tableColCount).to.equal(6);
+  console.log(`>>No of Columns: ${tableColCount}`);
+
+  // 2.get whole table data
+  // let tableArr = [];
+  // for (let i = 0; i < tableRowCount; i++) {
+  //   let personObj = {
+  //     lastname: "",
+  //     firstname: "",
+  //     email: "",
+  //     due: "",
+  //     webSite: ""
+  //   };
+  //   for (let j = 0; j < tableColCount; j++) {
+  //     let cellVal =await $(`//table[@id="table1"]/tbody/tr[${i+1}]/td[${j+1}]`).getText();
+  //     //console.log(`>>Cell Value: ${cellVal}`);
+  //     if(j === 0) personObj.lastname = cellVal;
+  //     if(j === 1) personObj.firstname = cellVal;
+  //     if(j === 2) personObj.email = cellVal;
+  //     if(j === 3) personObj.due = cellVal;
+  //     if(j === 4) personObj.webSite = cellVal;
+  //   }
+  //   tableArr.push(personObj);
+  // }
+  // console.log(`>> WHOLE TABLE DATA: ${JSON.stringify(tableArr)}`);
+
+  // 3.get single row (based on a condition)
+  //condition : display jason's details
+
+  let tableArr = [];
+  for (let i = 0; i < tableRowCount; i++) {
+    let personObj = {
+      lastname: "",
+      firstname: "",
+      email: "",
+      due: "",
+      webSite: "",
+    };
+    for (let j = 0; j < tableColCount; j++) {
+      let cellVal = await $(
+        `//table[@id="table1"]/tbody/tr[${i + 1}]/td[${j + 1}]`
+      ).getText();
+      let firstname = await (
+        await $(`//table[@id="table1"]/tbody/tr[${i + 1}]/td[2]`)
+      ).getText();
+      if (firstname === "Jason") {
+        if (j === 0) personObj.lastname = cellVal;
+        if (j === 1) personObj.firstname = cellVal;
+        if (j === 2) personObj.email = cellVal;
+        if (j === 3) personObj.due = cellVal;
+        if (j === 4) personObj.webSite = cellVal;
+      }
+    }
+    if (personObj.firstname) {
+      tableArr.push(personObj);
+    }
+  }
+  console.log(`>> jason's data: ${JSON.stringify(tableArr)}`);
+
+  // 4.get single column
+  // 5.get single cell value (based on another cell)
+  //await browser.debug();
 });
