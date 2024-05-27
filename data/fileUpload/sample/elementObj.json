@@ -1,0 +1,33 @@
+{
+    "sessionId": "69b960dfc0f160cce0e33ec92df52b3b",
+    "elementId": "f.3EEC70F41ACB1621DF92D7B33496A7E8.d.606AE69BB4D36E4D9390D73001D430CE.e.1",
+    "element-6066-11e4-a52e-4f735466cecf": "f.3EEC70F41ACB1621DF92D7B33496A7E8.d.606AE69BB4D36E4D9390D73001D430CE.e.1",
+    "selector": "[name=q]",
+    "parent": {
+        "sessionId": "69b960dfc0f160cce0e33ec92df52b3b",
+        "capabilities": {
+            "acceptInsecureCerts": false,
+            "browserName": "chrome",
+            "browserVersion": "125.0.6422.112",
+            "chrome": {
+                "chromedriverVersion": "125.0.6422.112 (e099925e675bbb19c42822548f5175ab03a36a32-refs/branch-heads/6422_76@{#3})",
+                "userDataDir": "C:\\Users\\shane\\AppData\\Local\\Temp\\scoped_dir23720_1310693137"
+            },
+            "fedcm:accounts": true,
+            "goog:chromeOptions": {
+                "debuggerAddress": "localhost:58102"
+            },
+            "networkConnectionEnabled": false,
+            "pageLoadStrategy": "normal",
+            "platformName": "windows",
+            "proxy": {},
+            "setWindowRect": true,
+            "strictFileInteractability": false,
+            "timeouts": {
+                "implicit": 15000,
+                "pageLoad": 20000,
+                "script": 30000
+            }
+        }
+    }
+}

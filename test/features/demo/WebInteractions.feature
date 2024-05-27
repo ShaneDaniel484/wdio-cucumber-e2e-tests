@@ -1,7 +1,7 @@
 Feature: Web Interactions
 
 
-    @demo
+    # @demo
     Scenario Outline: Web Interactions
         Given a web page is opened
          When perform web interactions

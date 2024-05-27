@@ -2,7 +2,10 @@ import { Given, When, Then } from "@wdio/cucumber-framework";
 import { expect } from "chai";
 Given(/^Google page is opened$/, async function () {
   await browser.url("https://www.google.com");
+  await browser.maximizeWindow();
   browser.pause(5000);
+  console.log(`After opening browser>>`);
+  //console.log(`browserObj>> ${JSON.stringify(browser)}`);
 });
 
 When(/^Search with (.*)$/, async function (SearchItem) {
@@ -10,6 +13,7 @@ When(/^Search with (.*)$/, async function (SearchItem) {
   let ele = await $(`[name=q]`);
   await ele.setValue(SearchItem);
   await browser.keys("Enter");
+  //console.log(`elementObj>> ${JSON.stringify(ele)}`);
 });
 
 Then(/^Click on first search result$/, async function () {
@@ -19,6 +23,9 @@ Then(/^Click on first search result$/, async function () {
 
 Then(/^URL should match (.*)$/, async function (ExpectedURL) {
   console.log(`>>ExpectedURL: ${ExpectedURL}`);
+  await browser.waitUntil(async function (){
+    return await browser.getTitle() == "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO"
+  },{timeout:20000 , interval : 500 ,timeoutMsg: `Failed to load WDIO webpage ${await browser.getTitle()}`})
   let URL = await browser.getUrl();
   console.log(`>>currentURL: ${URL}`);
   expect(URL).to.equal(ExpectedURL);
@@ -26,7 +33,7 @@ Then(/^URL should match (.*)$/, async function (ExpectedURL) {
 
 // WEB INTERACTIONS
 Given(/^a web page is opened$/, async function () {
-  await browser.url("https://the-internet.herokuapp.com/tables");
+  await browser.url("https://www.amazon.in/");
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
 });
@@ -236,12 +243,12 @@ When(/^perform web interactions$/, async function () {
    */
 
   //  1.Check number of rows and columns
-  let tableRowCount = await $$(`//table[@id="table1"]/tbody/tr`).length;
-  expect(tableRowCount).to.equal(4);
-  console.log(`>>No of Rows: ${tableRowCount}`);
-  let tableColCount = await $$(`//table[@id="table1"]/thead/tr/th`).length;
-  expect(tableColCount).to.equal(6);
-  console.log(`>>No of Columns: ${tableColCount}`);
+  // let tableRowCount = await $$(`//table[@id="table1"]/tbody/tr`).length;
+  // expect(tableRowCount).to.equal(4);
+  // console.log(`>>No of Rows: ${tableRowCount}`);
+  // let tableColCount = await $$(`//table[@id="table1"]/thead/tr/th`).length;
+  // expect(tableColCount).to.equal(6);
+  // console.log(`>>No of Columns: ${tableColCount}`);
 
   // 2.get whole table data
   // let tableArr = [];
@@ -319,5 +326,40 @@ When(/^perform web interactions$/, async function () {
   // }
   // console.log(`>>Single column : ${singleCol}`);
 
-  await browser.debug();
+
+  /**ADVANCED SCROLLING
+   * VIsible portion
+   * Windows object
+   * 1.scrollBY
+   *  Y -> [-]window.inerheight
+   */
+
+  //scroll down
+  // await browser.execute(()=>{
+  //   window.scrollBy(0,window.innerHeight)
+  // })
+
+  // await browser.pause(2000)
+
+  // //scroll up
+  // await browser.execute(()=>{
+  //   window.scrollBy(0, -window.innerHeight)
+  // })
+
+  /**
+   * INVISIBLE PORTION
+   * windows object
+   * 1.ScrollTo
+   * Y -> document.body.scrollTop[Scrollheight]
+   */
+
+  // await browser.execute(()=>{
+  //   window.scrollTo(0, document.body.scrollHeight)
+  // })
+
+
+
+
+
+  //await browser.debug();
 });
