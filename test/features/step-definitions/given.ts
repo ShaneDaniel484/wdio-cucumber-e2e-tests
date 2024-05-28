@@ -3,13 +3,16 @@ import chai from "chai";
 
 Given(/^user is logged in sauce labs$/, async function () {
     // 1. Open inventory app
-  await browser.url("https://www.saucedemo.com/v1/");
+    // @ts-ignore
+  await browser.url(browser.options.sauseDemoUrl);
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();
+  //console.log(`>> TEST CONFIG VALUES : ${JSON.stringify(browser.options)}`);
 
   //2. Login to inventory app
-  await $(`#user-name`).setValue("standard_user")
-  await $(`#password`).setValue("secret_sauce")
+  console.log(`>> TEST_STD_USERNAME : ${process.env.Test_STD_USERNAME}`);
+  await $(`#user-name`).setValue(process.env.Test_STD_USERNAME)
+  await $(`#password`).setValue(process.env.Test_STD_PASSWORD)
   await $(`#login-button`).click()
   await browser.pause(2000)
   

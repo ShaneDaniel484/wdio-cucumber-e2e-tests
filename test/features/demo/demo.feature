@@ -1,6 +1,6 @@
 Feature: Web Interactions
 
-    @demo @smoke
+    #@demo @smoke
     Scenario Outline: Demo Web Interactions
         Given Google page is opened
         When Search with <SearchItem>
