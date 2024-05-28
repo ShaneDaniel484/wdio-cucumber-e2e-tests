@@ -44,7 +44,7 @@ Given(/^user is logged in sauce labs$/, async function () {
   await browser.back()
   await browser.pause(2000)
   await browser.forward()
-  await browser.debug()
+ // await browser.debug()
 
 
 });
