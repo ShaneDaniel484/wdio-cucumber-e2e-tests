@@ -48,6 +48,6 @@ Given(/^user is logged in sauce labs$/, async function () {
   await browser.pause(2000)
   await browser.forward()
  // await browser.debug()
-
+  this.appid = "ID001"
 
 });
