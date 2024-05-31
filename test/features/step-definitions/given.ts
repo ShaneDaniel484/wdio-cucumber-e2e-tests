@@ -4,6 +4,9 @@ import chai from "chai";
 Given(/^user is logged in sauce labs$/, async function () {
     // 1. Open inventory app
     // @ts-ignore
+
+  console.log(`>>TEST ID : ${this.testID}`);
+  //@ts-ignore
   await browser.url(browser.options.sauseDemoUrl);
   await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
   await browser.maximizeWindow();

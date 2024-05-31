@@ -2,6 +2,7 @@ import { Then } from "@wdio/cucumber-framework";
 import { expect } from "chai";
 
 Then(/^user sees (.*) products listed$/, async function (NoOfProducts) {
+  console.log(`>> then step test id: ${this.testID}`);
   console.log(`>> The Appid: ${this.appid}`);
   if (!NoOfProducts) throw Error(`Invalid number provided :${NoOfProducts}`);
   let eleArr = await $$(`.inventory_item_name`);

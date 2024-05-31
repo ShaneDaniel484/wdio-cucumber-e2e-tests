@@ -1,3 +1,4 @@
+import { World } from '@wdio/cucumber-framework';
 import type { Options } from '@wdio/types';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -67,4 +68,12 @@ export const config: Options.Testrunner = {
             await browser.takeScreenshot();
         }
     },
+    beforeScenario: async function(world){
+      let arr = world.pickle.name.split(/:/)
+      
+      if (arr.length > 0) {
+        //@ts-ignore
+        browser.options.testID = arr[0]  
+      }
+    }
 };
