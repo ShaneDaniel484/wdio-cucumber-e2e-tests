@@ -4,6 +4,7 @@ import { expect } from "chai";
 Then(/^user sees (.*) products listed$/, async function (NoOfProducts) {
   console.log(`>> then step test id: ${this.testID}`);
   console.log(`>> The Appid: ${this.appid}`);
+  //throw Error(` :( `)
   if (!NoOfProducts) throw Error(`Invalid number provided :${NoOfProducts}`);
   let eleArr = await $$(`.inventory_item_name`);
   expect(eleArr.length).to.equal(parseInt(NoOfProducts));
