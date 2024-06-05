@@ -1,8 +1,10 @@
 import { Given } from "@wdio/cucumber-framework";
 import chai from "chai";
+import logger from "../../helper/logger.ts";
 
 Given(/^user is logged in sauce labs$/, async function () {
-    // 1. Open inventory app
+   logger.info(`>> ${this.testID} : started to login sause demo application..`) 
+  // 1. Open inventory app
     // @ts-ignore
 
   console.log(`>>TEST ID : ${this.testID}`);

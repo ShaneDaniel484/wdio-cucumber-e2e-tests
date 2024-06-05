@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test:debug": "cross-env DEBUG=Y HEADLESS=N npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@demo'",
-    "test:demo": "cross-env DEBUG=N HEADLESS=N npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@demo'",
-    "test:smoke": "cross-env DEBUG=N HEADLESS=Y npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@smoke'",
-    "uat:demo": "cross-env DEBUG=N HEADLESS=N npx wdio config/wdio.uat.conf.ts --cucumberOpts.tagExpression='@demo'",
-    "uat:smoke": "cross-env DEBUG=N HEADLESS=Y npx wdio config/wdio.uat.conf.ts --cucumberOpts.tagExpression='@smoke'"
+    "test:debug": "cross-env DEBUG=Y HEADLESS=N npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@demo' >output.txt",
+    "test:demo": "cross-env DEBUG=N HEADLESS=N npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@demo' >output.txt",
+    "test:smoke": "cross-env DEBUG=N HEADLESS=Y npx wdio config/wdio.test.conf.ts --cucumberOpts.tagExpression='@smoke' >output.txt",
+    "uat:demo": "cross-env DEBUG=N HEADLESS=N npx wdio config/wdio.uat.conf.ts --cucumberOpts.tagExpression='@demo' >output.txt",
+    "uat:smoke": "cross-env DEBUG=N HEADLESS=Y npx wdio config/wdio.uat.conf.ts --cucumberOpts.tagExpression='@smoke' >output.txt"
   },
   "keywords": [
     "wdio",
@@ -29,6 +29,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "winston": "^3.13.0"
   }
 }
